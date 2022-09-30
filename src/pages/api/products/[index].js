@@ -1,7 +1,7 @@
 import product from '@models/product'
-import { IncomingMessage, ServerResponse } from 'http'
+import { NextApiRequest, NextApiResponse } from 'next'
 
-const getAllProducts = async(request = IncomingMessage ,response = ServerResponse ) => {
+const getAllProducts = async(request = NextApiRequest ,response = NextApiResponse ) => {
 
     try {
 
