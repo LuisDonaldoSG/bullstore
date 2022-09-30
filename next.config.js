@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['placeimg.com','api.lorem.space','encrypted-tbn0.gstatic.com','picsum.photos','placeimg.conn']
+    domains: ['placeimg.com','api.lorem.space','encrypted-tbn0.gstatic.com','picsum.photos','placeimg.conn','firebasestorage.googleapis.com']
   },
   /*env: {
     customKey: 'customValue',

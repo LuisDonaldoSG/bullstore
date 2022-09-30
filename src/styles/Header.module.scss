@@ -20,6 +20,11 @@
   background: -webkit-linear-gradient(#8c82ff,#00a294);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  transition: transform .2s;
+  &:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+  }
 }
 .navbar-left ul,
 .navbar-right ul {
@@ -56,6 +61,12 @@
 }
 .navbar-shopping-cart {
   position: relative;
+  transition: transform .2s;
+    &:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+  
 }
 .navbar-shopping-cart div {
   width: 16px;

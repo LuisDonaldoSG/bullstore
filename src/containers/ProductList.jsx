@@ -1,21 +1,58 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ProductItem from '@components/ProductItem';
-import useGetProducts from '@hooks/useGetProducts';
 import styles from '@styles/ProductList.module.scss';
 
-const API = 'https://api.escuelajs.co/api/v1/products';
+let tempProducts = []
+const currentSkip = 0
 
 const ProductList = () => {
-	const products = useGetProducts(API);
-	console.log(products);
+	const [products, setProducts] = React.useState([])
+	
+	React.useEffect(() => {
+		window
+			.fetch(`/api/products/${currentSkip}`)
+			.then((response) => response.json())
+			.then(response =>{
+				console.log(response);
+				tempProducts = [...response]
+				setProducts(tempProducts)
+			})
+	},[])
+
+	const getMoreProducts = skiping => {
+		currentSkip = currentSkip+skiping
+		window
+			.fetch(`/api/products/${currentSkip}`)
+			.then((response) => response.json())
+			.then(response =>{
+				console.log(response);
+				tempProducts.push(...response)
+				setProducts([...tempProducts])
+		})
+	}
 
 	return (
 		<section className={styles["main-container"]}>
 			<div className={styles.ProductList}>
-				{products.map(product => (
-					<ProductItem product={product} key={product.id} />
-				))}
+				{
+					products.length > 0 && (
+						products.map(product => (	
+							<ProductItem 
+								product={product} 
+								key={product._id} 
+							/>
+						))
+					)
+				}
 			</div>
+			<div className={styles["button-container"]}>
+				<button 
+					onClick={() => getMoreProducts(50)}
+				>
+					Mostrar más.....
+				</button>
+			</div>
+			
 		</section>
 	);
 }

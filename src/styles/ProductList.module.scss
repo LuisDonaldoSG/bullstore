@@ -1,8 +1,26 @@
 @import "vars";
 
+.button-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+  button {
+    background-color: transparent;
+    border: none;
+    padding: 30px;
+    color: #8c82ff;
+    font-size: large;
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
+
 .ProductList {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 240px);
+  grid-template-columns: repeat(auto-fill, 300px);
   gap: 26px;
   place-content: center;
   margin: 6em 0 0 0;

@@ -4,6 +4,7 @@ import AppContext from '@context/AppContext';
 import useInitialState from '@hooks/useInitialState';
 import Header from '@components/Header';
 
+
 function MyApp({ Component, pageProps }) {
   const initialState = useInitialState();
 

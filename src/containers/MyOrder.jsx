@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import OrderItem from '@components/OrderItem';
 import AppContext from '../context/AppContext';
 import arrow from '@icons/flechita.svg';
-import Link from 'next/link';
 import Image from 'next/image';
 import styles from '@styles/MyOrder.module.scss'
 
@@ -15,12 +14,23 @@ const MyOrder = () => {
 		return sum;
 	}
 
+	const payment = () => {
+		if (state.cart.length > 0) {
+			const haveToPay =  Math.floor(Math.random() * (3 - 0 + 0) + 0)
+			const chiefsHavetoPay = ['El Saúl te debe 3 de esos','El Leo te lo paga', 'El Maik lo picha']
+			alert(chiefsHavetoPay[haveToPay])
+		} else {
+			alert('No has agregado ningún producto')
+		}
+
+	}
+
 	return (
 		<aside className ={styles.MyOrder}>
 			<div className ={styles["MyOrder-container"]}>
-				<div className ={styles["title-container"]}>
-					<Image className ={`${styles["more-clickable-area"]} ${styles.pointer}`} src={arrow} alt="arrow" onClick={() => toggleOrder()} />
-					<p className ="title">My order</p>
+				<div className ={styles["title-container"]} onClick={() => toggleOrder()}>
+					<Image className ={`${styles["more-clickable-area"]} ${styles.pointer}`} src={arrow} alt="arrow" />
+					<p className ={styles.title}>Mi carrito</p>
 				</div>
 				<div className ={styles["my-order-content"]}>
 					<div className = {styles["my-orders"]}>
@@ -34,9 +44,12 @@ const MyOrder = () => {
 						</p>
 						<p>${sumTotal()}</p>
 					</div>
-					<Link href={"/checkout"} className={styles["primary-button"]}>
-						Checkout
-					</Link>
+					<button  
+						className={styles["primary-button"]}
+						onClick = {() => payment()}
+					>
+						Pagar
+					</button>
 				</div>
 			</div>
 		</aside>

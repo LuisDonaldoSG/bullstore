@@ -10,11 +10,16 @@
   top: 60px;
   bottom: 0;
   border-radius: 6px;
-  border: 1px solid $--very-light-pink;
   z-index: 1;
+  backdrop-filter: saturate(180%) blur(100px);
+  background-color: rgba(255,255,255,0.72);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 .title-container {
   display: flex;
+  :hover{
+    cursor: pointer;
+  }
 }
 .MyOrder-container {
   position: sticky;
@@ -26,8 +31,7 @@
   margin-right: 14px;
 }
 .title {
-  font-size: $--lg;
-  font-weight: bold;
+  margin-left: 5px;
 }
 
 .my-order-content {
@@ -55,6 +59,7 @@
   margin-bottom: 24px;
   border-radius: 8px;
   padding: 0 24px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 .order p:nth-child(1) {
   display: flex;
@@ -70,15 +75,18 @@
 }
 
 .primary-button {
-  background-color: $--hospital-green;
   border-radius: 8px;
   border: none;
-  color: $--white;
+  color: black;
   width: 100%;
   cursor: pointer;
-  font-size: $--md;
   font-weight: bold;
   height: 50px;
+  background-color: transparent;
+  &:hover{
+    text-decoration: underline;
+  }
+
 }
 @media (max-width: 640px) {
   .MyOrder {
