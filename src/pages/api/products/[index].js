@@ -8,10 +8,11 @@ const getAllProducts = async(request = IncomingMessage ,response = ServerRespons
         const index = parseInt(request.query.index)
 
         const productsPaginated = await product.find().skip(index).limit(50)
+        const LengthproductsPaginated = await product.count()
 
         response.statusCode = 200
         response.setHeader('Content-type','aplication/json')
-        response.end(JSON.stringify(productsPaginated))
+        response.end(JSON.stringify({length:LengthproductsPaginated ,data: productsPaginated}))
 
     } catch (error) {
         console.log(error);

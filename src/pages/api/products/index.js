@@ -6,6 +6,8 @@ const getAllProducts = async(request = IncomingMessage ,response = ServerRespons
     try {
         const products = await product.find()
 
+        console.log(request.query);
+
         response.statusCode = 200
         response.setHeader('Content-type','aplication/json')
         response.end(JSON.stringify(products))

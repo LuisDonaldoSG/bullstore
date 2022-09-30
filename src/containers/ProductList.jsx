@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ProductItem from '@components/ProductItem';
 import styles from '@styles/ProductList.module.scss';
 
 let tempProducts = []
-const currentSkip = 0
+let currentSkip = 0
 
 const ProductList = () => {
 	const [products, setProducts] = React.useState([])
+	const [productsLength, setProductsLength] = React.useState(0)
 	
 	React.useEffect(() => {
 		window
 			.fetch(`/api/products/${currentSkip}`)
 			.then((response) => response.json())
 			.then(response =>{
-				console.log(response);
-				tempProducts = [...response]
+				tempProducts = [...response.data]
 				setProducts(tempProducts)
+				setProductsLength(response.length)
 			})
 	},[])
 
@@ -25,8 +26,7 @@ const ProductList = () => {
 			.fetch(`/api/products/${currentSkip}`)
 			.then((response) => response.json())
 			.then(response =>{
-				console.log(response);
-				tempProducts.push(...response)
+				tempProducts.push(...response.data)
 				setProducts([...tempProducts])
 		})
 	}
@@ -46,11 +46,16 @@ const ProductList = () => {
 				}
 			</div>
 			<div className={styles["button-container"]}>
-				<button 
-					onClick={() => getMoreProducts(50)}
-				>
-					Mostrar más.....
-				</button>
+				{
+					productsLength !== products.length && (
+						<button 
+							onClick={() => getMoreProducts(50)}
+							>
+							Mostrar más.....
+						</button>
+					)
+				}
+
 			</div>
 			
 		</section>

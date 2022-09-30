@@ -5,6 +5,7 @@ import React from 'react'
 
 
 export async function getServerSideProps(context) {
+  console.log(context);
   dbConnect()
 
   return {
