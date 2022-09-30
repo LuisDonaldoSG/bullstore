@@ -39,7 +39,7 @@ const ProductList = () => {
 						products.map(product => (	
 							<ProductItem 
 								product={product} 
-								key={product._id} 
+								key={product._id.$oid} 
 							/>
 						))
 					)
